@@ -4,8 +4,8 @@ from supabase import create_client
 import streamlit.components.v1 as components
 
 # Supabase 연결
-SUPABASE_URL = "https://your-project-id.supabase.co"
-SUPABASE_KEY = "your-anon-key"
+SUPABASE_URL = "https://csosixcrhclbitkagwjf.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzb3NpeGNyaGNsYml0a2Fnd2pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NDk5ODUsImV4cCI6MjA2NDQyNTk4NX0.JuQgk8RkPlcNV38yEhn9QF-o895l9rIeZNTcnemLdnQ"
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 st.set_page_config(page_title="TRPG CoC 앱", layout="centered")
