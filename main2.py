@@ -62,3 +62,17 @@ if st.button("캐릭터 삭제"):
             st.error("비밀번호가 틀렸습니다.")
     else:
         st.error("해당 캐릭터가 없습니다.")
+    if response.data:
+    stored_pw = response.data[0].get("delete_password")
+    if stored_pw is None or stored_pw == "":
+        # 비밀번호 없는 캐릭터는 바로 삭제 허용
+        supabase.table("characters").delete().eq("id", character_id).execute()
+        st.success("비밀번호 없이 캐릭터 삭제 완료!")
+    elif password == stored_pw:
+        supabase.table("characters").delete().eq("id", character_id).execute()
+        st.success("캐릭터 삭제 완료!")
+    else:
+        st.error("비밀번호가 틀렸습니다.")
+else:
+    st.error("해당 캐릭터가 없습니다.")
+
