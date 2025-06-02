@@ -47,3 +47,18 @@ elif menu == "캐릭터 불러오기":
             st.markdown(f"**설명**\n{selected_char['description']}")
     else:
         st.warning("저장된 캐릭터가 없습니다.")
+st.header("캐릭터 삭제")
+character_id = st.text_input("삭제할 캐릭터 ID 입력")
+password = st.text_input("비밀번호 입력", type="password", key="delete_pw")
+
+if st.button("캐릭터 삭제"):
+    response = supabase.table("characters").select("delete_password").eq("id", character_id).execute()
+    if response.data:
+        stored_pw = response.data[0]["delete_password"]
+        if password == stored_pw:
+            supabase.table("characters").delete().eq("id", character_id).execute()
+            st.success("캐릭터 삭제 완료!")
+        else:
+            st.error("비밀번호가 틀렸습니다.")
+    else:
+        st.error("해당 캐릭터가 없습니다.")
